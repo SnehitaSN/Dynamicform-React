@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import React, { useState } from "react"
 import './App.css';
 
 function App() {
+  const [fields,setFileds] = useState([])
+
+  function addField(){
+    setFileds([...fields,""])
+  }
+
+  function handleChange(index,event){
+    const newFields = [...fields]
+    newFields[index]=event.target.value
+    setFileds(newFields)
+
+  }
+  function handleSubmit(e){
+    e.preventDefault()
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form onSubmit={handleSubmit}>
+        {fields.map((field,index)=>{
+       return   <input key={index} type="text" placeholder={`Filed ${index+1}`}
+        value={field}
+        onChange={(event)=>{
+          handleChange(index,event)
+        }}/>
+        })}
+      </form>
+      <button onClick={addField}>Add</button>
     </div>
   );
 }
