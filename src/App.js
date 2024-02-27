@@ -18,6 +18,7 @@ function App() {
     e.preventDefault()
   }
   return (
+    <div>
     <div className="App">
       <form onSubmit={handleSubmit}>
         {fields.map((field,index)=>{
@@ -29,6 +30,7 @@ function App() {
         })}
       </form>
       <button onClick={addField}>Add</button>
+    </div>
     </div>
   );
 }
